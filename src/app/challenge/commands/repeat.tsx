@@ -1,7 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndContext } from '@dnd-kit/core';
 
 export default function RepeatBlock() {
   const [iterations, setIterations] = useState(0);

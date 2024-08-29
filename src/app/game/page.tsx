@@ -1,5 +1,5 @@
 'use client'
-import Board from "./Board"
+import Board from '@/app/game/board'
 import Up from "./blocks/Up"
 import Down from "./blocks/Down"
 import Execute from "./Execute"
@@ -18,7 +18,7 @@ export default function Page() {
 
     console.log('instructions in page: ', instructions)
 
-    const handleDragEnd = (event) => {
+    const handleDragEnd = (event: { active: any; over: any }) => {
 
         const { active, over } = event;
         if (over) {

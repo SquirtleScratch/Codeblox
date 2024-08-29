@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 
-const delay = ms => new Promise(res => setTimeout(res, ms));
+const delay = (ms: number | undefined) => new Promise(res => setTimeout(res, ms));
 
 export default function Board({ instructions }) {
 
@@ -17,14 +17,14 @@ export default function Board({ instructions }) {
         let newX = avatarPosition.x
         let newY = avatarPosition.y
 
-        instructions.forEach((instruction, index) => {
+        instructions.forEach((instruction: { x: number; y: number; }, index: any) => {
             console.log('executing instruction: ', instruction)
             newX += instruction.x
             newY += instruction.y
         })
         setAvatarPosition({ x: newX, y: newY })
         console.log(avatarPosition)
-    }, [instructions])
+    }, [avatarPosition, instructions])
 
     useEffect(() => {
         console.log('avatar position use effect: ', avatarPosition)
