@@ -7,10 +7,10 @@ import Image from 'next/image'
 import AnimalButton from './AnimalButton'
 
 
-export default function AnimalContainer({ changeAnimal }) {
+export default function AnimalContainer({ changeAnimal }: { changeAnimal: number }) {
     const [source, setSource] = useState('/animalimages/questionmark.jpg')
 
-    const initialAnimalData = [{ label: 'Desert', image: '/animalimages/camel.png' }, { label: 'Jungle', image: '/animalimages/monkey.jpg' }, { label: 'Arctic', image: '/animalimages/penguin.png' }]
+    const initialAnimalData = [{ label: 'Desert', image: '/animalimages/camel.png' }, { label: 'Jungle', image: '/animalimages/monkey.jpg' }, { label: 'Arctic', image: '/animalimages/penguin.png' }, { label: 'Mountain', image: '/animalimages/alpaca.webp' }, { label: 'Swamp', image: '/animalimages/scarletibis.jpg' }]
 
     const [animalId, setAnimalId] = useState('')
 
@@ -18,13 +18,7 @@ export default function AnimalContainer({ changeAnimal }) {
 
     useEffect(() => {
         console.log("trying to get a new animal")
-        generateNewAnimal()
-    }, [changeAnimal])
-
-    function generateNewAnimal() {
-        console.log('animalData pre filtering:', animalData)
         const newAnimalData = animalData.filter((val) => val.label != animalId)
-        console.log('animalData post filtering:', newAnimalData)
 
         if (newAnimalData.length === 0) {
             alert("YOU WIN YOU AWESOME PERSON")
@@ -35,17 +29,24 @@ export default function AnimalContainer({ changeAnimal }) {
         setSource(newAnimalData[index].image)
         setAnimalId(newAnimalData[index].label)
         setAnimalData(newAnimalData)
+    }, [changeAnimal]) // eslint-disable-line react-hooks/exhaustive-deps
+
+    function generateAnimal() {
+        let index = Math.floor(Math.random() * animalData.length)
+        setSource(animalData[index].image)
+        setAnimalId(animalData[index].label)
+        setAnimalData(animalData)
     }
 
     return (
         <div>
-            <AnimalButton onClick={generateNewAnimal} />
             <Animal source={source} id={animalId} />
+            <AnimalButton onClick={generateAnimal} />
         </div>
     )
 }
 
-function Animal({ source, id }) {
+function Animal({ source, id }: { source: string, id: string }) {
     const { attributes, listeners, setNodeRef, transform } = useDraggable({
         id: id,
     });
@@ -57,7 +58,7 @@ function Animal({ source, id }) {
 
     return (
         <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
-            <Image src={source} alt="Picture of the animal" width={200} height={200} />
+            <Image className='h-24 w-24' src={source} alt="Picture of the animal" width={150} height={150} />
         </div>
     )
 }
