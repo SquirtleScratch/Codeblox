@@ -3,17 +3,13 @@ import { useState, useEffect } from 'react'
 import { useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import Image from 'next/image'
-
 import AnimalButton from './AnimalButton'
+import { animalDataType } from './ifelsetypes'
 
 
-export default function AnimalContainer({ changeAnimal }: { changeAnimal: number }) {
-    const [source, setSource] = useState('/animalimages/questionmark.jpg')
-
-    const initialAnimalData = [{ label: 'Desert', image: '/animalimages/camel.png' }, { label: 'Jungle', image: '/animalimages/monkey.jpg' }, { label: 'Arctic', image: '/animalimages/penguin.png' }, { label: 'Mountain', image: '/animalimages/alpaca.webp' }, { label: 'Swamp', image: '/animalimages/scarletibis.jpg' }]
-
+export default function AnimalContainer({ changeAnimal, initialAnimalData }: { changeAnimal: number, initialAnimalData: [] | animalDataType[] }) {
+    const [source, setSource] = useState('/animalimages/questionmark.webp')
     const [animalId, setAnimalId] = useState('')
-
     const [animalData, setAnimalData] = useState(initialAnimalData)
 
     useEffect(() => {
@@ -28,12 +24,14 @@ export default function AnimalContainer({ changeAnimal }: { changeAnimal: number
         let index = Math.floor(Math.random() * newAnimalData.length)
         setSource(newAnimalData[index].image)
         setAnimalId(newAnimalData[index].label)
+
         setAnimalData(newAnimalData)
     }, [changeAnimal]) // eslint-disable-line react-hooks/exhaustive-deps
 
     function generateAnimal() {
         let index = Math.floor(Math.random() * animalData.length)
         setSource(animalData[index].image)
+
         setAnimalId(animalData[index].label)
         setAnimalData(animalData)
     }
@@ -57,7 +55,7 @@ function Animal({ source, id }: { source: string, id: string }) {
 
 
     return (
-        <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
+        <div className="w-24" ref={setNodeRef} style={style} {...listeners} {...attributes}>
             <Image className='h-24 w-24' src={source} alt="Picture of the animal" width={150} height={150} />
         </div>
     )

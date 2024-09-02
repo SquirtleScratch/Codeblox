@@ -2,12 +2,32 @@
 
 import HabitatsContainer from "./HabitatsContainer";
 import AnimalContainer from "./AnimalContainer";
-import { DndContext, DragEndEvent } from '@dnd-kit/core';
+import { DndContext, DragEndEvent, closestCenter, closestCorners, rectIntersection } from '@dnd-kit/core';
 import { useState, useEffect } from 'react'
+import { animalDataType, initialDataType, returnValueDataType } from './ifelsetypes'
+import initialData from "./animalData"
+import IfElseRules from "./IfElseRules";
 
+function getInitialHabitats(initialData: initialDataType[]) {
+
+    const targetHabitats = 5
+    const returnValue: returnValueDataType = { "habitats": [], "animals": [] }
+
+    let habitatData: initialDataType[] = [...initialData]
+    for (let i = 0; i < targetHabitats; i++) {
+        let index = Math.floor(Math.random() * habitatData.length)
+        let currentHabitat: initialDataType = habitatData[index]
+        returnValue.habitats = [...returnValue.habitats, currentHabitat]
+        returnValue.animals = [...returnValue.animals, ...currentHabitat.animals]
+        habitatData = habitatData.filter((habitat, habitatIndex) => habitatIndex !== index)
+    }
+    return returnValue
+}
 
 export default function Page() {
     const [animalValue, setAnimalValue] = useState(0)
+    const [habitatData, setHabitatData] = useState(getInitialHabitats(initialData))
+
     function handleDragEnd(event: DragEndEvent) {
         if (event.over) {
             if (event.over.id === event.active.id) {
@@ -22,21 +42,11 @@ export default function Page() {
 
     return (
         <div >
-            <DndContext onDragEnd={handleDragEnd}>
-                <HabitatsContainer />
-                <AnimalContainer changeAnimal={animalValue} />
+            <DndContext onDragEnd={handleDragEnd} collisionDetection={rectIntersection}>
+                <HabitatsContainer initialHabitatData={habitatData.habitats} />
+                <AnimalContainer initialAnimalData={habitatData.animals} changeAnimal={animalValue} />
             </DndContext>
-            <div>
-                if animal is a  penguin, habitat is the arctic
-                <br></br>
-                else if animal is a camel, habitat is the desert
-                <br></br>
-                else if animal is red, habitat is the swamp
-                <br></br>
-                else if animal is an alpaca, habitat is the mountain
-                <br></br>
-                else habitat is the jungle
-            </div>
+            <IfElseRules animalData={habitatData.animals}/>
         </div>
 
     )
