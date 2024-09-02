@@ -10,7 +10,7 @@ export default function IfElseRules({ animalData }: { animalData: animalDataType
         let animalDataCopy = [...animalData]
         let count = 0
         let ruleValues = []
-        while (animalDataCopy.length > 0 && count < 10) {
+        while (animalDataCopy.length > 0) {
             const attributeVals: attributeObject = {}
             animalDataCopy.forEach((animal) => {
 
@@ -34,16 +34,12 @@ export default function IfElseRules({ animalData }: { animalData: animalDataType
 
             const objectArray: attributeTuple[] = Object.keys(attributeVals).map((key) => [key, attributeVals[key]]);
             const filtered = objectArray.filter((currentVal) => currentVal[1].size === 1)
-            console.log(filtered)
             const ruleSet = filtered[0]
-            // const ruleKeys = ruleSet.slice(0, ruleSet.length - 1)
-            // const ruleKeyNames: string[] = ruleSet[ruleSet.length - 1]
+
 
             const parsedRuleSet: parsedRuleSetObject = JSON.parse(ruleSet[0])
             ruleValues.push([JSON.parse(ruleSet[0]), Array.from(ruleSet[1])[0]])
-            // console.log('filtered rules: ',filtered)
-            console.log('ruleSet: ', ruleSet)
-            console.log('before filtering: ', animalDataCopy)
+
 
             animalDataCopy = animalDataCopy.filter((currentAnimal) => {
                 let shouldFilter = true
@@ -53,8 +49,6 @@ export default function IfElseRules({ animalData }: { animalData: animalDataType
                 }
                 return !shouldFilter
             })
-            console.log('after filtering: ', animalDataCopy)
-            count++
         }
 
         const updatedInstructions = ruleValues.slice(0, ruleValues.length - 1).map((value, index) => {
@@ -63,7 +57,7 @@ export default function IfElseRules({ animalData }: { animalData: animalDataType
             const attributes = value[0]
             const habitat = value[1]
 
-            for(const property in attributes){
+            for (const property in attributes) {
                 ruleStringParts.push(` ${property} is ${attributes[property]} `)
             }
             ruleString = ruleStringParts.join(" and ")
@@ -77,8 +71,6 @@ export default function IfElseRules({ animalData }: { animalData: animalDataType
         )
 
         setInstructions(updatedInstructions)
-
-        console.log("rules are: ",JSON.stringify(ruleValues))
 
     }, [animalData])
 
