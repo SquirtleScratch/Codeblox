@@ -1,6 +1,6 @@
 import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import CredentialsProvider from "next-auth/providers/credentials";
+import { getUser, postUser } from "../../../../utils/fetch";
 
 export const options: NextAuthOptions = {
     providers: [
@@ -8,35 +8,20 @@ export const options: NextAuthOptions = {
             clientId: process.env.GCLIENT_ID as string,
             clientSecret: process.env.GCLIENT_SECRET as string
         }),
-        CredentialsProvider({
-            name: "Credentials",
-            credentials: {
-                username: {
-                    label: "Username:",
-                    type: "text",
-                    placeholder: "username"
-                },
-                password: {
-                    label: "Password:",
-                    type: "password",
-                    placeholder: "password"
-                }
-            },
-            async authorize(credentials){
-                //insert database call here to verify user
-                const user = { id: '22', name: "Josh", password: "testing" };
-
-                if(credentials?.username === user.name && credentials?.password === user.password) {
-                    return user;
-                } else {
-                    return null;
-                }
-            }
-        }),
     ],
     callbacks: {
-        async redirect({ url, baseUrl }) {
-          return url.startsWith(baseUrl) ? url : baseUrl
+        async signIn({ user }){
+            let retUser = await getUser(user.email);
+            if(retUser.message){
+                retUser = await postUser(user.email, user.id)
+            }
+            if(await retUser.useremail){
+                return true;
+            }
+            return false;
+        },
+        async redirect({ baseUrl }) {
+          return baseUrl
         },
     },
     session: {}
