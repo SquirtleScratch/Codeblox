@@ -4,28 +4,31 @@ import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 
 export default function Repeat(props) {
-	const [iterations, setIterations] = useState(0);
 	const { attributes, listeners, setNodeRef, transform } = useDraggable({
 		id: "repeat",
 	});
-	const style = { transform: CSS.Translate.toString(transform) };
+	const style = {
+		transform: CSS.Translate.toString(transform),
+	};
+	
+	const [iterations, setIterations] = useState(0);
 
 	return (
-		<div
-			id="repeat"
-			className="w-48 border-2 bg-sky-600"
+		<button
 			ref={setNodeRef}
 			style={style}
 			{...listeners}
 			{...attributes}>
 			{props.children}
-			<span className="text-white">Repeat </span>
-			<input
-				type="number"
-				value={iterations}
-				onChange={(e) => setIterations(e.target.valueAsNumber)}
-				className="w-16 text-black bg-white"></input>
-			<span className="text-white"> times</span>
-		</div>
+			<div className="w-52 h-12 flex justify-center items-center bg-fuchsia-500 rounded-lg p-2.5">
+				<span>Repeat </span>
+				<input
+					className="w-16 text-black bg-white rounded mx-2"
+					type="number"
+					value={iterations}
+					onChange={(e) => setIterations(e.target.valueAsNumber)}></input>
+				<span> times</span>
+			</div>
+		</button>
 	);
 }

@@ -7,7 +7,7 @@ export default function Workspace(props) {
 		id: "workspace",
 	});
 	const style = {
-		color: isOver ? "bg-slate-200" : undefined,
+		background: isOver ? 'rgb(20 83 45)' : undefined,
 	};
 
 	return (
@@ -16,7 +16,6 @@ export default function Workspace(props) {
 			ref={setNodeRef}
 			style={style}>
 			<p className="text-xl">Place your blocks here:</p>
-			{props.children}
 		</div>
 	);
 }
