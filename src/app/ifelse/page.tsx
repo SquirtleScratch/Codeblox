@@ -7,6 +7,8 @@ import { useState, useEffect } from 'react'
 import { animalDataType, initialDataType, returnValueDataType } from './ifelsetypes'
 import initialData from "./animalData"
 import IfElseRules from "./IfElseRules";
+import Tryagain from "./Tryagain";
+import Restart from "./Restart";
 
 function getInitialHabitats(initialData: initialDataType[]) {
 
@@ -18,7 +20,15 @@ function getInitialHabitats(initialData: initialDataType[]) {
         let index = Math.floor(Math.random() * habitatData.length)
         let currentHabitat: initialDataType = habitatData[index]
         returnValue.habitats = [...returnValue.habitats, currentHabitat]
-        returnValue.animals = [...returnValue.animals, ...currentHabitat.animals]
+
+        let currentAnimals = [...currentHabitat.animals]
+        let animalIndex1 = Math.floor(Math.random() * currentAnimals.length)
+        let firstAnimal = currentAnimals.splice(animalIndex1, 1)[0]
+
+        let animalIndex2 = Math.floor(Math.random() * currentAnimals.length)
+        let secondAnimal = currentAnimals[animalIndex2]
+
+        returnValue.animals = [...returnValue.animals, firstAnimal, secondAnimal]
         habitatData = habitatData.filter((habitat, habitatIndex) => habitatIndex !== index)
     }
     return returnValue
@@ -27,15 +37,26 @@ function getInitialHabitats(initialData: initialDataType[]) {
 export default function Page() {
     const [animalValue, setAnimalValue] = useState(0)
     const [habitatData, setHabitatData] = useState(getInitialHabitats(initialData))
+    const [tryAgain, setTryAgain] = useState(false)
+    const [restart, setRestart] = useState(false)
+
+
+    useEffect(() => {
+        if (restart) {
+            setHabitatData(getInitialHabitats(initialData))
+        }
+        setRestart(false)
+    }, [restart])
+
 
     function handleDragEnd(event: DragEndEvent) {
         if (event.over) {
             if (event.over.id === event.active.id) {
-                console.log("BOOM GOES THE DYNAMITE YOU GOT IT RIGHT")
                 setAnimalValue(animalValue + 1)
+                setTryAgain(false)
             }
             else {
-                alert("YOU ARE ONLY A KID ITS OK YOU GOT THIS WRONG")
+                setTryAgain(true)
             }
         }
     }
@@ -44,9 +65,12 @@ export default function Page() {
         <div >
             <DndContext onDragEnd={handleDragEnd} collisionDetection={rectIntersection}>
                 <HabitatsContainer initialHabitatData={habitatData.habitats} />
-                <AnimalContainer initialAnimalData={habitatData.animals} changeAnimal={animalValue} />
+                <AnimalContainer initialAnimalData={habitatData.animals} changeAnimal={animalValue} setRestart={setRestart} />
             </DndContext>
-            <IfElseRules animalData={habitatData.animals}/>
+            <div className="flex">
+                <IfElseRules animalData={habitatData.animals} />
+                {tryAgain && <Tryagain />}
+            </div>
         </div>
 
     )

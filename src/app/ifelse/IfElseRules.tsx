@@ -22,7 +22,7 @@ export default function IfElseRules({ animalData }: { animalData: animalDataType
                     { color: animal.color },
                     { grouping: animal.grouping },
                     { food: animal.food },
-                    { name: animal.name }
+                    { animal: animal.animal }
                 ]
 
                 combinations.forEach((combination) => {
