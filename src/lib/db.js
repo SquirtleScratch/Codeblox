@@ -1,11 +1,11 @@
 const { Client } = require("pg");
 
 const client = new Client({
-    host: "3.145.185.234",
-    user: process.env.PGDB_USER,
-    port: 5432,
-    password: process.env.PGDB_PASS,
-    database: 'codeblox'
+    host: process.env.POSTGRES_HOST_ALIAS || 'localhost',
+    user: process.env.POSTGRES_USER || 'postgres',
+    port: process.env.POSGRES_PORT ||  5432,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DB,
 });
 
 client.connect((err) => {
