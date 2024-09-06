@@ -20,7 +20,7 @@ export default function Wait(props) {
 			{...listeners}
 			{...attributes}>
 			{props.children}
-			<div className="w-52 h-12 flex justify-center items-center bg-sky-500 rounded-lg p-2.5">
+			<div className="w-52 h-12 flex justify-center items-center bg-sky-500 rounded-lg p-2.5 my-2">
 				<span>Wait </span>
 				<input
 					className="w-16 text-black bg-white rounded mx-2"
