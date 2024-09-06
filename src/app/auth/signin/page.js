@@ -28,7 +28,7 @@ export default function SignIn() {
         </div>
       ))}
       <div style={{ marginTop: 20 }}>
-        <p>Don't have an account?</p>
+        <p>Don`&lsquo;`t have an account?</p>
         <Link href="/auth/register">Create a new account</Link>
       </div>
     </div>
