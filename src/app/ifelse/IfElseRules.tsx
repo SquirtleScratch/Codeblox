@@ -75,8 +75,9 @@ export default function IfElseRules({ animalData }: { animalData: animalDataType
     }, [animalData])
 
     return (
-        <div>
-            <ul>
+        <div className='w-3/6 pl-14 bg-gray-200 rounded-lg p-6 text-left text-black'>
+            <p className='font-bold mb-2'>Animal Rules</p>
+            <ul className='list-disc ml-6 space-y-1'>
                 {instructions}
             </ul>
 

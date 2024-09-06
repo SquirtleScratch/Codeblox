@@ -41,12 +41,17 @@ export default function Page() {
     const [restart, setRestart] = useState(false)
 
 
-    useEffect(() => {
-        if (restart) {
-            setHabitatData(getInitialHabitats(initialData))
-        }
+    // useEffect(() => {
+    //     if (restart) {
+    //         setHabitatData(getInitialHabitats(initialData))
+    //     }
+    //     setRestart(false)
+    // }, [restart])
+
+    function restartGame() {
+        setHabitatData(getInitialHabitats(initialData))
         setRestart(false)
-    }, [restart])
+    }
 
 
     function handleDragEnd(event: DragEndEvent) {
@@ -62,16 +67,21 @@ export default function Page() {
     }
 
     return (
-        <div >
+        <div className="h-dvh bg-gray-200">
             <DndContext onDragEnd={handleDragEnd} collisionDetection={rectIntersection}>
                 <HabitatsContainer initialHabitatData={habitatData.habitats} />
-                <AnimalContainer initialAnimalData={habitatData.animals} changeAnimal={animalValue} setRestart={setRestart} />
-            </DndContext>
-            <div className="flex">
-                <IfElseRules animalData={habitatData.animals} />
                 {tryAgain && <Tryagain />}
-            </div>
-        </div>
+                {restart && <Restart onClick={restartGame} />}
+                <div className="flex justify-items-center mt-20">
+                    {!restart && <AnimalContainer initialAnimalData={habitatData.animals} changeAnimal={animalValue} setRestart={setRestart} />}
+                    {!restart && <IfElseRules animalData={habitatData.animals} />}
+                    <br></br>
+                </div>
+            </DndContext>
+            <a href="/challenge" className="float-right inline-block mr-0.5 px-4 py-2 bg-green-500 text-white text-sm font-semibold rounded-lg shadow-lg hover:bg-green-600 transition duration-300">
+            Maze challenge
+          </a>
+        </div >
 
     )
 }

@@ -34,7 +34,7 @@ export default function AnimalContainer({ changeAnimal, initialAnimalData, setRe
         const newAnimalData = animalData.filter((val) => val.label != animalId)
 
         if (newAnimalData.length === 0) {
-            alert("YOU WIN YOU AWESOME PERSON")
+            // alert("YOU WIN YOU AWESOME PERSON")
             //setAnimalData(initialAnimalData)
             setRestart(true)
             return
@@ -59,7 +59,7 @@ export default function AnimalContainer({ changeAnimal, initialAnimalData, setRe
 
 
     return (
-        <div>
+        <div className='w-3/6 pl-72 bg-gray-200 rounded-lg p-6 mb-0 text-center'>
             <Animal source={source} id={animalId} name={animalName} />
             <AnimalButton onClick={generateAnimal} />
         </div>
@@ -75,9 +75,9 @@ function Animal({ source, id, name }: { source: string, id: string, name: string
     };
 
     return (
-        <div className="w-24" ref={setNodeRef} style={style} {...listeners} {...attributes}>
-            <h2>{name}</h2>
-            <Image className='h-24 w-24' src={source} alt="Picture of the animal" width={150} height={150} />
+        <div className="w-40" ref={setNodeRef} style={style} {...listeners} {...attributes}>
+            <h2 className='text-xl font-semibold text-gray-800 mb-4 '>{name}</h2>
+            <Image className='w-40 h-32 mx-auto mb-4' src={source} alt="Picture of the animal" width={150} height={150} />
         </div>
     )
 }

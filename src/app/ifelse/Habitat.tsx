@@ -20,9 +20,9 @@ export default function Habitat({ label, image, id }: { label: string, image: st
 
     return (
         isClient ? (<div style={style} ref={setNodeRef}>
-            <h2 className='text-center'>{isClient ? label : null}</h2>
-            <div className='border-2 col-span-1 flex justify-center item-center'>
-                {isClient ? <Image className='h-32 w-32 border-2' src={image} alt="Picture of the habitat" width={200} height={200} /> : null}
+            <h2 className='text-center font-semibold text-black'>{isClient ? label : null}</h2>
+            <div className='col-span-1 bg-white shadow-lg rounded-lg p-4 flex flex-col items-center'>
+                {isClient ? <Image className='w-32 h-32 object-contain mb-2' src={image} alt="Picture of the habitat" width={200} height={200} /> : null}
             </div>
         </div>) : null
     )

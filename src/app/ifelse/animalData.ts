@@ -1,6 +1,3 @@
-// const initialHabitatData = [{ label: 'Arctic', image: '/habitatimages/arctic.png' }, { label: 'Desert', image: '/habitatimages/desert.png' }, { label: 'Jungle', image: '/habitatimages/jungle.png' }, { label: 'Mountain', image: '/habitatimages/mountain.png' }, { label: 'Swamp', image: '/habitatimages/swamp.png' }, { label: 'Ocean', image: '/habitatimages/ocean.webp' }, { label: 'Savannah', image: '/habitatimages/savannah.png' }]
-
-// const initialData = [{ label: 'Desert', image: '/animalimages/camel.png' }, { label: 'Jungle', image: '/animalimages/monkey.webp' }, { label: 'Arctic', image: '/animalimages/penguin.webp' }, { label: 'Mountain', image: '/animalimages/alpaca.webp' }, { label: 'Swamp', image: '/animalimages/scarletibis.webp' }, { label: 'Ocean', image: '/animalimages/fish.webp' }, { label: 'Savannah', image: '/animalimages/giraffe.webp' }]
 
 const arcticAnimals = [
     { image: '/animalimages/reindeer.png', animal: "Reindeer", grouping: "mammal", color: "brown", food: "grass", label: "Arctic" },
@@ -19,7 +16,7 @@ const desertAnimals = [
 const jungleAnimals = [
     { image: '/animalimages/macaw.png', animal: "Macaw", grouping: "bird", color: "red", food: "fruit", label: "Jungle" },
     { image: '/animalimages/frog.png', animal: "Frog", grouping: "amphibian", color: "green", food: "insects", label: "Jungle" },
-    { image: '/animalimages/lizard.png', animal: "Lizard", grouping: "reptile", color: "green", food: "insects", label: "Jungle" }
+    { image: '/animalimages/lizard.webp', animal: "Lizard", grouping: "reptile", color: "green", food: "insects", label: "Jungle" }
 
 ]
 
@@ -39,7 +36,7 @@ const swampAnimals = [
 const freshWaterAnimals = [
     { image: '/animalimages/axolotl.png', animal: "Axolotl", grouping: "amphibian", color: "black", food: "worms", label: "Fresh Water" },
     { image: '/animalimages/heron.png', animal: "Heron", grouping: "bird", color: "grey", food: "fish", label: "Fresh Water" },
-    { image: '/animalimages/alligator.png', animal: "Alligator", grouping: "reptile", color: "grey", food: "fish", label: "Fresh Water" },
+    { image: '/animalimages/alligator.png', animal: "Alligator", grouping: "reptile", color: "green", food: "fish", label: "Fresh Water" },
 ]
 
 const savannaAnimals = [
