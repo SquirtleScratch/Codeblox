@@ -1,4 +1,3 @@
-const PORT = process.env.PORT;
 const URL = process.env.NEXTAUTH_URL;
 
 async function makeRequest(endpoint:string, options:RequestInit) {
