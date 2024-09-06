@@ -10,9 +10,7 @@ export default function HabitatsContainer({ initialHabitatData }: { initialHabit
         return <Habitat key={card.label} label={card.label} image={card.image} id={card.label}></Habitat>
     })
 
-    //let className = `grid grid-cols-${habitatData.length}`
-    let className = `grid grid-cols-5 grid-rows-1 gap-3`
-
+    let className = ' bg-gray-100 p-8 grid grid-cols-5 gap-6 mb-8'
     return (
         <div className={className}>
             {habitats}
