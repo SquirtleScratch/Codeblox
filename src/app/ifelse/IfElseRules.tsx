@@ -3,8 +3,10 @@ import { useState, useEffect } from 'react'
 import Habitat from './Habitat'
 import { animalDataType, attributeObject, attributeTuple, initialDataType, parsedRuleSetObject } from './ifelsetypes'
 
+
 export default function IfElseRules({ animalData }: { animalData: animalDataType[] | [] }) {
     const [instructions, setInstructions] = useState<[] | React.ReactNode[]>([])
+
     useEffect(() => {
 
         let animalDataCopy = [...animalData]
@@ -57,17 +59,20 @@ export default function IfElseRules({ animalData }: { animalData: animalDataType
             const attributes = value[0]
             const habitat = value[1]
 
+
             for (const property in attributes) {
                 ruleStringParts.push(` ${property} is ${attributes[property]} `)
             }
             ruleString = ruleStringParts.join(" and ")
             ruleString += ` then habitat is ${habitat}`
 
-            return <li key={index}>{index === 0 && 'if '}{index != 0 && 'else if '}{ruleString}</li>
+            let elseif = index == 0 ? <span className='text-green-700'>if </span> : <span className='text-green-700'>else if</span>
+
+            return <li key={index}>{elseif}{ruleString}</li>
         })
 
         updatedInstructions.push(
-            <li key={ruleValues.length}>else the habitat is {ruleValues[ruleValues.length - 1][1]}</li>
+            <li key={ruleValues.length}><span className='text-green-700'>else</span> the habitat is {ruleValues[ruleValues.length - 1][1]}</li>
         )
 
         setInstructions(updatedInstructions)
