@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 
 const delay = (ms: number | undefined) => new Promise(res => setTimeout(res, ms));
 
-export default function Board({ instructions }) {
+export default function Board({ instructions } : {instructions:any}) {
 
     const [avatarPosition, setAvatarPosition] = useState({ x: 1, y: 1 })
     const [divClassName, setdivClassName] = useState(`border-white border-2 h-11 w-11`)

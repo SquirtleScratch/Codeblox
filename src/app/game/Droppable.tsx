@@ -2,7 +2,7 @@
 import React from 'react';
 import {useDroppable} from '@dnd-kit/core';
 
-export default function DropZone({ id }) {
+export default function DropZone({ id }: {id:string}) {
     const { isOver, setNodeRef } = useDroppable({ id });
     const style = {
       border: '2px dashed gray',
