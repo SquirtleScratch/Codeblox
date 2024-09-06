@@ -13,8 +13,10 @@ export default function Gameboard() {
   }
 
   return (
-    <div className='grid grid-cols-10 h-max w-max'>
-      {rows}
+    <div className='flex justify-center'>
+      <div className='grid grid-cols-10 h-max w-max'>
+        {rows}
+      </div>
     </div>
   );
-};
+}
