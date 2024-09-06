@@ -78,7 +78,7 @@ export default function Page() {
                     <br></br>
                 </div>
             </DndContext>
-            <a href="/challenge" className="float-right inline-block mr-0.5 px-4 py-2 bg-green-500 text-white text-sm font-semibold rounded-lg shadow-lg hover:bg-green-600 transition duration-300">
+            <a href="/challenge" className="float-right inline-block mr-0.5 px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded-lg shadow-lg hover:bg-blue-600 transition duration-300">
             Maze challenge
           </a>
         </div >
