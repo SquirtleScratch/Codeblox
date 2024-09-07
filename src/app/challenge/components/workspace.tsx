@@ -14,7 +14,7 @@ export default function Workspace({ children }: any) {
 
 	return (
 		<div
-			className="min-h-96 h-max w-96 border-2 border-b-white"
+			className="min-h-96 h-max w-96 border-2 border-black"
 			ref={setNodeRef}
 			style={style}>
 			<p className="text-xl">Place your blocks here:</p>

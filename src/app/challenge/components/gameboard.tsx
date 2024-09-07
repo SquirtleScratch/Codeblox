@@ -1,9 +1,10 @@
 "use client";
 import { useState, useEffect, useContext } from "react";
+import Image from "next/image";
 import { PositionContext } from "../utils/positionContext";
 
 export default function Gameboard() {
-  const position = useContext(PositionContext);
+	const position: any = useContext(PositionContext);
 	const gridSize = 10;
 
 	let rows = [];
@@ -13,11 +14,18 @@ export default function Gameboard() {
 			let key = `${j}${i}`;
 			let isSpriteHere = position.x === j && position.y === i;
 			rows.push(
-				<div
-					className={`border-white border-2 h-11 w-11 ${
-						isSpriteHere ? "bg-blue-500" : ""
-					}`}
-					key={key}></div>
+				<div className={"border-yellow-500 border h-16 w-16"} key={key}>
+					{isSpriteHere ? (
+						<Image src="/mazeimages/Villager_sprite.webp" height={64} width={64} alt="" />
+					) : (
+						<Image
+							src="/mazeimages/FieldsTile_58.png"
+							width={64}
+							height={64}
+							alt=""
+						/>
+					)}
+				</div>
 			);
 		}
 	}

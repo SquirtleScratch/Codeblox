@@ -1,11 +1,11 @@
 'use client';
 import { createContext, useReducer } from 'react';
 
-export const PositionContext = createContext(null);
-export const PositionDispatchContext = createContext(null);
+export const PositionContext: any = createContext(null);
+export const PositionDispatchContext: any = createContext(null);
 
 export function PositionProvider({ children }: any) {
-  const [position, dispatch] = useReducer(positionReducer, initialPosition);
+  const [position, dispatch] = useReducer<any>(positionReducer, initialPosition);
 
   return (
     <PositionContext.Provider value={position}>

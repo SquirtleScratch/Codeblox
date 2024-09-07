@@ -18,17 +18,7 @@ export default function MoveUp({ children }: any) {
 	};
 
 	return (
-		<button
-			ref={setNodeRef}
-			style={style}
-			{...listeners}
-			{...attributes}
-			onClick={() => {
-				// setNewPosition(position);
-				dispatch({
-					type: "move-up",
-				});
-			}}>
+		<button ref={setNodeRef} style={style} {...listeners} {...attributes}>
 			{children}
 			<div className="w-52 h-12 flex justify-center items-center bg-green-500 rounded-lg p-2.5 my-2">
 				<span>Move up one space</span>

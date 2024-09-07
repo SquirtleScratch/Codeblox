@@ -15,16 +15,7 @@ export default function Mouseclick({ children }: any) {
 	};
 
 	return (
-		<button
-			ref={setNodeRef}
-			style={style}
-			{...listeners}
-			{...attributes}
-			onClick={() => {
-				dispatch({
-					type: "mouseclick",
-				});
-			}}>
+		<button ref={setNodeRef} style={style} {...listeners} {...attributes}>
 			{children}
 			<div className="w-52 h-12 flex justify-center items-center bg-red-500 rounded-lg p-2.5 my-2">
 				<p>Mouseclick</p>

@@ -16,16 +16,7 @@ export default function Wait({ children }: any) {
 	};
 
 	return (
-		<button
-			ref={setNodeRef}
-			style={style}
-			{...listeners}
-			{...attributes}
-			onClick={() => {
-				dispatch({
-					type: "wait",
-				});
-			}}>
+		<button ref={setNodeRef} style={style} {...listeners} {...attributes}>
 			{children}
 			<div className="w-52 h-12 flex justify-center items-center bg-sky-500 rounded-lg p-2.5 my-2">
 				<span>Wait </span>
