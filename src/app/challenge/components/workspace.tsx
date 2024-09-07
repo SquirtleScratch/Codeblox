@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useDroppable } from "@dnd-kit/core";
 
-export default function Workspace({ children }) {
+export default function Workspace({ children }: any) {
 	const { isOver, setNodeRef } = useDroppable({
 		id: "workspace",
 	});

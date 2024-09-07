@@ -1,10 +1,13 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import { useDraggable } from '@dnd-kit/core';
-import { CSS } from '@dnd-kit/utilities';
+"use client";
+import React, { useState, useEffect, useContext } from "react";
+import { PositionDispatchContext } from "../utils/positionContext";
+import { useDraggable } from "@dnd-kit/core";
+import { CSS } from "@dnd-kit/utilities";
 
-export default function Mouseclick(props) {
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+export default function Mouseclick({ children }: any) {
+	const dispatch = useContext(PositionDispatchContext);
+
+	const { attributes, listeners, setNodeRef, transform } = useDraggable({
 		id: "mouseclick",
 	});
 	const style = {
@@ -16,11 +19,16 @@ export default function Mouseclick(props) {
 			ref={setNodeRef}
 			style={style}
 			{...listeners}
-			{...attributes}>
-			{props.children}
+			{...attributes}
+			onClick={() => {
+				dispatch({
+					type: "mouseclick",
+				});
+			}}>
+			{children}
 			<div className="w-52 h-12 flex justify-center items-center bg-red-500 rounded-lg p-2.5 my-2">
 				<p>Mouseclick</p>
 			</div>
 		</button>
 	);
-};
+}

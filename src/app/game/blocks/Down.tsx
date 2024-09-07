@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { useDraggable } from '@dnd-kit/core';
-import { CSS } from '@dnd-kit/utilities';
+import { CSS } from '@dnd-kit/utilities'
+import { instructions } from '../gametypes';
 
-export default function Down({ tempInstructions, id }) {
+export default function Down({ tempInstructions, id }: {tempInstructions: instructions[], id:string}) {
 
     const [spaces, setSpaces] = useState(0)
 

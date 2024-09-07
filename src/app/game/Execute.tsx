@@ -1,6 +1,8 @@
 'use client'
 
-export default function Execute({ tempInstructions, instructions, setInstructions }) {
+import { instructions } from "./gametypes"
+
+export default function Execute({ tempInstructions, instructions, setInstructions }: {tempInstructions:instructions[], instructions:instructions[], setInstructions:any}) {
     //console.log(instructions)
     function move() {
         console.log('move function')

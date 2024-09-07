@@ -4,7 +4,7 @@ import { createContext, useReducer } from 'react';
 export const PositionContext = createContext(null);
 export const PositionDispatchContext = createContext(null);
 
-export function PositionProvider({ children }) {
+export function PositionProvider({ children }: any) {
   const [position, dispatch] = useReducer(positionReducer, initialPosition);
 
   return (
@@ -18,7 +18,7 @@ export function PositionProvider({ children }) {
 
 const initialPosition = { x: 1, y: 1 };
 
-function positionReducer(position, action) {
+function positionReducer(position: { x: number, y: number }, action: { type: any; }) {
   switch (action.type) {
     case "move-up": {
       position.y = position.y - 1;

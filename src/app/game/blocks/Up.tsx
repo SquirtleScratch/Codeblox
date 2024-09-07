@@ -1,8 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { instructions } from '../gametypes'
 
-export default function Up({tempInstructions}) {
+export default function Up({tempInstructions}: {tempInstructions:instructions[]}) {
     const [spaces, setSpaces] = useState(0)
 
     function updateSpaces(spaceValue: String) {

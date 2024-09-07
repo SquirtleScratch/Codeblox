@@ -19,14 +19,14 @@ import {
 } from "./utils/positionContext";
 
 export default function Page() {
-	const [activeId, setActiveId] = useState(null);
-	const [blocks, setBlocks] = useState([]);
+	const [activeId, setActiveId] = useState<string | null>(null);
+	const [blocks, setBlocks] = useState<string[]>([]);
 
-	function handleDragStart(e) {
+	function handleDragStart(e: any) {
 		setActiveId(e.active.id);
 	}
 
-	function handleDragEnd(e) {
+	function handleDragEnd(e: any) {
 		if (e.over && e.over.id === "workspace") {
 			setBlocks((prevBlocks) => [...prevBlocks, e.active.id]);
 		}

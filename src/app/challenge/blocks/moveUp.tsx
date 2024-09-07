@@ -7,7 +7,7 @@ import {
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 
-export default function MoveUp({ children }) {
+export default function MoveUp({ children }: any) {
 	const dispatch = useContext(PositionDispatchContext);
 
 	const { attributes, listeners, setNodeRef, transform } = useDraggable({

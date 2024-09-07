@@ -4,7 +4,7 @@
 // import Wait from "@/app/challenge/blocks/wait";
 import React, { useState, useEffect } from "react";
 
-export default function Palette({ children }) {
+export default function Palette({ children }: any) {
 	console.log('palette children: ', children);
 
 	return (
