@@ -14,21 +14,21 @@ import { DndContext, DragOverlay } from "@dnd-kit/core";
 import Draggable from "./utils/draggable";
 
 export default function Page() {
-	const [activeId, setActiveId] = useState(null);
-	const [blocks, setBlocks] = useState([]);
+	const [activeId, setActiveId] = useState<string | null>(null);
+	const [blocks, setBlocks] = useState<string[]>([]);
 
-	function handleDragStart(e) {
+	function handleDragStart(e: any) {
 		setActiveId(e.active.id);
 	}
 
-	function handleDragEnd(e) {
+	function handleDragEnd(e: any) {
 		if (e.over && e.over.id === "workspace") {
 			setBlocks((prevBlocks) => [...prevBlocks, e.active.id]);
 		}
 		setActiveId(null);
 	}
 
-	function renderDropped(activeId) {
+	function renderDropped(activeId: string | null) {
 		switch (activeId) {
 			case "move-up":
 				// return activeId === "move-up" && <MoveUp />;
@@ -61,7 +61,7 @@ export default function Page() {
 			<div className="flex flex-wrap space-x-10">
 				<div id="gameboard" className="w-screen">
 					<h1 className="text-4xl">Challenge</h1>
-					<Gameboard></Gameboard>
+					<Gameboard />
 				</div>
 				<div id="palette">
 					<h1 className="text-4xl">Palette</h1>
@@ -78,10 +78,10 @@ export default function Page() {
 				<div id="workspace">
 					<h1 className="text-4xl">Workspace</h1>
 					<Workspace blocks={blocks}>
-						{blocks.map((activeId, index) => {
-							<div key={index}>{renderDropped(activeId)}</div>;
-							console.log('active id: ', activeId);
-						})}
+						{blocks.map((activeId, index) => (
+              <div key={index}>{renderDropped(activeId)}</div>
+              //console.log('active id: ', activeId);
+            ))}
 					</Workspace>
 				</div>
 			</div>
