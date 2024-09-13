@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactNode } from "react";
 import { useDroppable } from "@dnd-kit/core";
 import MoveUp from "../blocks/moveUp";
 import MoveDown from "../blocks/moveDown";
@@ -9,7 +9,12 @@ import Repeat from "../blocks/repeat";
 import Wait from "../blocks/wait";
 import Mouseclick from "../blocks/mouseclick";
 
-export default function Workspace({ blocks }) {
+interface WorkspaceProps {
+  blocks: string[];
+  children?: ReactNode;
+}
+
+export default function Workspace({ blocks, children }: WorkspaceProps) {
 	const { isOver, setNodeRef } = useDroppable({
 		id: "workspace",
 	});
@@ -26,7 +31,7 @@ export default function Workspace({ blocks }) {
 			style={style}>
 			<p className="text-xl">Place your blocks here:</p>
 			<div className="flex flex-col items-center">
-				{blocks.map((el, index) => {
+				{blocks.map((el: string, index: number) => {
 					switch (el) {
 						case 'move-up':
 							return <MoveUp id={el + index} key={index} />;
@@ -46,6 +51,7 @@ export default function Workspace({ blocks }) {
 							return null;
 					}
 				})}
+        {children}
 			</div>
 		</div>
 	);
